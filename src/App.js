@@ -1,21 +1,44 @@
 import * as React from "react";
 import { Admin, Resource, EditGuesser } from "react-admin";
-import jsonServerProvider from "ra-data-json-server";
+// import jsonServerProvider from "ra-data-json-server";
 import { UserList } from "./components/User";
 import { PostCreate, PostList } from "./components/Post";
 import Dashboard from "./components/Dashboard";
-import authProvider from "./components/AuthProvider";
+// import authProvider from "./components/AuthProvider";
+import {
+  FirebaseDataProvider,
+  FirebaseAuthProvider,
+} from "react-admin-firebase";
 
 import PostIcon from "@mui/icons-material/Book";
 import UserIcon from "@mui/icons-material/Group";
 
-const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
+const firebaseConfig = {
+  apiKey: "AIzaSyCxjmDJVM8rcc28nDvMAuH4vIsZkZyQwD8",
+  authDomain: "helps-9814f.firebaseapp.com",
+  projectId: "helps-9814f",
+  storageBucket: "helps-9814f.appspot.com",
+  messagingSenderId: "549871292538",
+  appId: "1:549871292538:web:9cef1aa0cec522d092abc3",
+  measurementId: "G-Y81L8CKYBE",
+};
+
+// import { firebaseConfig as config } from "./FIREBASE_CONFIG";
+
+const options = {
+  logging: true,
+  rootRef: "root_collection/some_document",
+};
+const dataProvider = FirebaseDataProvider(firebaseConfig, options);
+const authProvider = FirebaseAuthProvider(firebaseConfig, options);
+
+// const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
 
 const App = () => (
   <Admin
     dashboard={Dashboard}
-    authProvider={authProvider}
     dataProvider={dataProvider}
+    authProvider={authProvider}
   >
     <Resource
       name="posts"

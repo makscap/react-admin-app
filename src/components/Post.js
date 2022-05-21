@@ -16,12 +16,12 @@ import {
 import { useRecordContext } from "react-admin";
 import { useMediaQuery } from "@mui/material";
 
-const postFilters = [
-  <TextInput source="q" label="Search" alwaysOn />,
-  <ReferenceInput source="userId" label="User" reference="users">
-    <SelectInput optionText="name" />
-  </ReferenceInput>,
-];
+// const postFilters = [
+//   <TextInput source="q" label="Search" alwaysOn />,
+//   <ReferenceInput source="userId" label="User" reference="users">
+//     <SelectInput optionText="name" />
+//   </ReferenceInput>,
+// ];
 
 export const PostList = () => {
   const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
